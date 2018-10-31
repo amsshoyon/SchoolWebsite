@@ -36,8 +36,6 @@ $(document).ready(function() {
 });
  /*Scroll to top when arrow up clicked END*/
 
-
-
 //Image preview
   var loadFile = function(event) {
     var reader = new FileReader();

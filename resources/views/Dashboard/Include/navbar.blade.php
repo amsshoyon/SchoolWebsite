@@ -66,7 +66,7 @@
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
-                                    <li><a href="/Dashboard/Profile">My Profile</a></li>
+                                    <li><a href="/Dashboard/Slider">Slider Images</a></li>
                                     <li><a href="/Dashboard/Location">My Location</a></li>
                                     <li><a href="/Dashboard/Skills">Skills</a></li>
                                     <li><a href="/Dashboard/Experiences">Experiences</a></li>

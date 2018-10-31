@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Slider extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class Slider extends Controller
      */
     public function index()
     {
-        //
+        return view('Dashboard.slider');
     }
 
     /**

@@ -11,9 +11,9 @@
       <strong>Error ! </strong>{{ $error }}
     </div>
 @endforeach
-<div class="row " style="margin-top:60px;">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 box_shadow well" style="padding: 10px;border-radius: 10px;">
-        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+<div class="row" style="margin-top:60px;">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 box_shadow" style="padding: 10px; background-color: #EBEDEF; border-radius: 10px;">
+        <form class="" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" >
             @csrf
             <div>
                 <h2 class="text-center">Please Sign In</h2>

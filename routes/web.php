@@ -21,3 +21,10 @@ Route::get('/', function () {
 Auth::routes();
  
 Route::get('/Admin', 'HomeController@index')->name('home');
+
+//slider images
+Route::resource('/Dashboard/Slider', 'SliderController');
+
+Route::post('/Dashboard/Slider', 'SliderController@store');
+
+Route::delete('/Dashboard/Slider/{id}', 'SliderController@destroy');
