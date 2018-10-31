@@ -11,6 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+	    $admin = DB::table('users')->insert([
+			'username'   => 'username',                 //default username	
+			'email'      => 'username@domain.com',     //default email
+			'password'   => Hash::make('123456'),      //default password
+			'name' => 'Admin Full Name',
+			'phone'  => '+880-1722-000000',
+			'image'  => '',
+			'created_at' => new DateTime(),
+			'updated_at' => new DateTime()
+		]);
     }
 }

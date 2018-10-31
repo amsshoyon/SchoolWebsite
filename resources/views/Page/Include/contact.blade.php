@@ -1,4 +1,4 @@
-<div class="card seperator_background"  data-stellar-background-ratio="0.2" style="padding-bottom: 30px;padding-top: 30px;background-image: url(images/13.jpg);">
+<div class="card seperator_background darker"  data-stellar-background-ratio="0.2" style="padding-bottom: 30px;padding-top: 30px;background-image: url(images/13.jpg);">
 	<div class="container">
 		<div class="text-center" style="color: #fff;">
 			<h1><span>C</span>ontact  <spna>U</spna>s</h1>

@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/Admin', function () {
-    return view('Dashboard.index');
-});
-
 Route::get('/', function () {
     return view('Page.index');
 });
+
+
+//Admin Panal
+
+Auth::routes();
+ 
+Route::get('/Admin', 'HomeController@index')->name('home');

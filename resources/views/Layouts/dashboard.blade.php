@@ -36,7 +36,6 @@
          <div style="margin-left: -20px;">
             @yield('dashboard')
          </div>
-         <a href="#">hello</a>
       </aside>
    </div>
 
