@@ -1,3 +1,11 @@
 .vcal-week span{
   font-size: 12px!important;
 }
+
+
+.notice_board{
+	height: 470px;
+}
+.notice_board .card-body{
+	overflow: auto;
+}

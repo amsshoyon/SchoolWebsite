@@ -42,6 +42,33 @@
 	width:100%;
 	height: 500px;
 }
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  top: calc(50% - 150px);
+  font-size:40px;
+  left: 15%;
+  z-index: 10;
+  padding-bottom: 0px;
+  color: #fff;
+  text-align: center;
+}
+
+.carousel-caption  h2 {
+	font-size:60px;
+	color: #0BA9F9;
+}
+
+.carousel-caption  h2 span {
+	font-size:60px;
+	color: #fff;
+}
+
+.carousel-caption  p {
+  font-size:30px;
+  margin-top:30px;
+  color:#fff;
+}
 .intro  .carousel-caption{
 	top:25%;
 }

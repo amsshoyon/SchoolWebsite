@@ -11,7 +11,7 @@ body,html{
 }
 
 a{
-    text-decoration:none;
+    text-decoration:none!important;
 }
 a:active, a:focus {
   outline: 0;
@@ -27,10 +27,50 @@ p{
     text-align: justify;
     text-justify: inter-word;
 }
+
+.title_head{
+  font-size: 1.2em;
+  color: #27AE61;
+}
 .parallax {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.box_shadow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.seperator {
+  padding:80px;
+  color:#fff;
+  background-color:rgba(0,0,0, .5);
+}
+.seperator_background{
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-size:100% 100%;
+}
+.seperator i {
+  font-size:90px;
+  color:#fff;
+  opacity:.7;
+}
+
+.seperator h3 {
+  margin-top:20px;
+  margin-bottom:20px; 
+  font-size:30px;
+  font-family:footlight mt light;
+   -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.seperator h3:hover {
+  transform:scale(1.2);
+  
 }
 .colorgraph {
   height: 5px;

@@ -6,26 +6,8 @@
 	<div class="container">
 		<div class="row">
 
-			{{-- E-Informations --}}
-			<div class="col">
-
-				<div class="card">
-					<div class="card-header">
-						<h3>E-Informations</h3>
-					</div>
-					<div class="card-body">
-						<ul>
-							<li><a href="">info 1</a></li>
-							<li><a href="">info 1</a></li>
-							<li><a href="">info 1</a></li>
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-
 			{{-- Calender --}}
-			<div class="col">
+			<div class="col-sm-8">
 
 				<div id="v-cal">
 					<div class="vcal-header">
@@ -62,21 +44,50 @@
 
 			</div>
 
-			{{-- Notice Board --}}
-			<div class="col">
-				<div class="card">
+			<div class="col-sm-4">
+
+				<div class="card notice_board">
 					<div class="card-header">
-						<h3>E-Informations</h3>
+						<h3>Notice Board</h3>
 					</div>
 					<div class="card-body">
-						<ul>
-							<li><a href="">info 1</a></li>
-							<li><a href="">info 1</a></li>
-							<li><a href="">info 1</a></li>
-						</ul>
+						<div class="">
+							<a href="">
+								<h4>Notice One</h4>
+							</a>
+							<p>Short Description</p>
+						</div>
+						<div class="">
+							<a href="">
+								<h4>Notice One</h4>
+							</a>
+							<p>Short Description</p>
+						</div>
+						<div class="">
+							<a href="">
+								<h4>Notice One</h4>
+							</a>
+							<p>Short Description</p>
+						</div>
+						<div class="">
+							<a href="">
+								<h4>Notice One</h4>
+							</a>
+							<p>Short Description</p>
+						</div>
+						<div class="">
+							<a href="">
+								<h4>Notice One</h4>
+							</a>
+							<p>Short Description</p>
+						</div>
+
 					</div>
 				</div>
+				
 			</div>
+
+			
 
 		</div>
 			

@@ -19,40 +19,39 @@
    </header>
    <!-- header section end-->
 
-<div style="background-color: #333;">
 
-  <nav class="animenu container" role="navigation" aria-label="Menu">
+    <nav class="animenu top_nav" role="navigation" aria-label="Menu" style="width: 100%">
 
-      <button class="animenu__toggle">
-        <span class="animenu__toggle__bar"></span>
-        <span class="animenu__toggle__bar"></span>
-        <span class="animenu__toggle__bar"></span>
-      </button>
+        <button class="animenu__toggle">
+          <span class="animenu__toggle__bar"></span>
+          <span class="animenu__toggle__bar"></span>
+          <span class="animenu__toggle__bar"></span>
+        </button>
 
-      <ul class="animenu__nav">
-        <li><a href="#">Home</a></li>
-        <li>
-          <a href="#" class="animenu__nav__hasDropdown" aria-haspopup="true">Archive</a>
-          <ul class="animenu__nav__dropdown" aria-label="submenu">
-            <li><a href="#" role="menuitem">Sub Item 1</a></li>
-            <li><a href="#" role="menuitem">Sub Item 2</a></li>
-            <li><a href="#" role="menuitem">Sub Item 3</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="animenu__nav__hasDropdown" aria-haspopup="true">Categories</a>
-          <ul class="animenu__nav__dropdown" aria-label="submenu">
-            <li><a href="#" role="menuitem">Sub Item 1</a></li>
-            <li><a href="#" role="menuitem">Sub Item 2</a></li>
-            <li><a href="#" role="menuitem">Sub Item 3</a></li>
-          </ul>
-        </li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+        <ul class="animenu__nav box_shadow text-center">
+          <li><a href="#">Home</a></li>
+          <li>
+            <a href="#" class="animenu__nav__hasDropdown" aria-haspopup="true">Archive</a>
+            <ul class="animenu__nav__dropdown" aria-label="submenu">
+              <li><a href="#" role="menuitem">Sub Item 1</a></li>
+              <li><a href="#" role="menuitem">Sub Item 2</a></li>
+              <li><a href="#" role="menuitem">Sub Item 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="animenu__nav__hasDropdown" aria-haspopup="true">Categories</a>
+            <ul class="animenu__nav__dropdown" aria-label="submenu">
+              <li><a href="#" role="menuitem">Sub Item 1</a></li>
+              <li><a href="#" role="menuitem">Sub Item 2</a></li>
+              <li><a href="#" role="menuitem">Sub Item 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+
     </nav>
 
   
-</div>
 <div class="clearfix"></div>
   <script src="/js/navbar.js"></script>
