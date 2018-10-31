@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Slider;
+use App\Http\Requests\SliderRequest;
 
 class SliderController extends Controller
 {
@@ -11,9 +14,16 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        return view('Dashboard.slider');
+        $sliders = Slider::get();
+        return view('dashboard.slider')->with(compact('sliders'));    
     }
 
     /**
@@ -32,10 +42,25 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(SliderRequest $request){
+
+        $image_name = time().'.'.$request->image->getClientOriginalExtension();
+
+        // Uplaod image
+        $path= $request->file('image')->storeAs('public/images/slider/', $image_name);
+
+        // Upload Photo
+        $image = new Slider;
+        $image->title = $request->input('title');
+        $image->subtitle = $request->input('subtitle');
+        $image->image = $image_name;
+
+        $image->save();
+
+        return redirect('/Dashboard/Slider/')->with('success', 'Image Uploaded');
     }
+            
+    
 
     /**
      * Display the specified resource.
@@ -45,7 +70,7 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-        //
+       // 
     }
 
     /**
@@ -56,7 +81,9 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slider = Slider::find($id);
+        $sliders = Slider::get();
+        return view('dashboard.slider',compact('sliders'),compact('slider'));  
     }
 
     /**
@@ -68,7 +95,22 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update=Slider::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+
+            Storage::delete('public/images/slider/'.$update->image);
+            $image_name = time().'.'.$request->image->getClientOriginalExtension();
+            $path= $request->file('image')->storeAs('public/images/slider/', $image_name);
+            $update->image = $image_name;
+
+        }   
+        $update->title = $request['title'];
+        $update->subtitle = $request['subtitle'];
+
+        $update->save();             
+        return redirect('/Dashboard/Slider/')->with('success', 'Image Updated');
+        
     }
 
     /**
@@ -77,8 +119,14 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+
+        $image = Slider::find($id);
+
+        if(Storage::delete('public/images/slider/'.$image->image)){
+            $image->delete();
+            return redirect('/Dashboard/Slider')->with('success', 'Photo Deleted');
+        }
     }
+    
 }

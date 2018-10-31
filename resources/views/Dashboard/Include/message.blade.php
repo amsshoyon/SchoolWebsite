@@ -1,9 +1,4 @@
 
-
-
-{{-- Data Crud operation --}}
-
-
 <div class="">
   <div class="row">
 
@@ -66,14 +61,13 @@
                     </fieldset>
 
                     <fieldset  class="form-group">
-                      {!! Form::label('subtitle', 'Add a Subtitle: ') !!}
-                      {{Form::text('subtitle',null,['value'=>'$slider->subtitle','placeholder' => 'Image Subtitle', 'class' => 'form-control'])}}
+                      {!! Form::label('description', 'Add a Description: ') !!}
+                      {{Form::textarea('description',null,['value'=>'$slider->description','placeholder' => 'Album Description', 'class' => 'form-control', 'rows' => '7'])}}
                     </fieldset>
 
                     <fieldset class="form-group">
                       @if(isset($slider))
                           {{Form::submit('Update', ['class'=>'btn btn-info'])}}
-                          <a href="/Dashboard/Slider" class="btn btn-success">Reset</a>
                       @else
                           {{Form::submit('Upload', ['class'=>'btn btn-info'])}}
                       @endif
@@ -93,7 +87,6 @@
   </div>
 </div>
 
-{{-- Data show --}}
 
 <div class="">
   <div class="row">
@@ -110,18 +103,18 @@
           <div class="row">
 
           
-          @foreach($sliders as $slider)
+          {{-- @foreach($sliders as $slider)
 
           <div class="col-md-3">
             <div class="hovereffect">
                 <img class="img-responsive" src="/storage/images/slider/{{$slider->image}}" alt="" style="width:100%;">
                 <div class="overlay">
                   <h2 class="text-white">{{$slider->title}}</h2>
-                  <h4 class="text-white">{{$slider->subtitle}}</h4>
+                  <h4 class="text-white">{{$slider->description}}</h4>
                   
                   {!!Form::open(['route' => ['Slider.destroy', $slider->id], 'method' => 'DELETE'])!!}
                       <div class="col-md-6">
-                        {{link_to_route('Slider.edit','Edit',[$slider->id],['class'=>'btn btn-success', 'style'=>'padding:5px; width:90px;color:#fff; '])}}
+                        {{link_to_route('Slider.edit','Edit',[$slider->id],['class'=>'btn btn-success','style'=>'width:100%;height:30px;color:#fff'])}}
                       </div>
                       <div class="col-md-6">
                         {{Form::submit('Delete', ['class' => 'btn btn-danger','onclick'=>'return deleletconfig()','style'=>'width:100%'])}}
@@ -131,7 +124,7 @@
             </div>
           </div>
             
-          @endforeach
+          @endforeach --}}
 
 
 
