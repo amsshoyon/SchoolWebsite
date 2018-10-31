@@ -126,7 +126,7 @@
             
           @endforeach --}}
 
-{{Form::submit('Delete', ['class' => 'btn btn-danger','onclick'=>'return deleletconfig()','style'=>'width:100%'])}}
+
 
           </div>
         </div>

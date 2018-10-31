@@ -55,24 +55,12 @@ function deleletconfig(){
 	    buttons: {
 	        confirm: function () {
 	            $.alert('Confirme!');
-              return true;
 	        },
 	        cancel: function () {
 	            $.alert('Cancele!');
-              return false;
 	        }
 	    }
 	});
 
 }
 
-//Delete confirmation
-
-function deleletconfig(){
-
-var del=confirm("Are you sure you want to delete this record?");
-if (del==true){
-   alert ("Record will be deleted....")
-}
-return del;
-}
