@@ -10,7 +10,7 @@
    <link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet"> 
 
    {{-- Local CSS/Javaxcript --}}
-   <link rel="stylesheet" href="/css/dashboard/style.css">
+   <link rel="stylesheet" href="/css/dashboard.css">
    <script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
 
    {{-- Bootstrap --}}
@@ -31,7 +31,7 @@
 <body >
 
    <div>
-      @include('Dashboard.Include.navbar')
+      @include('Dashboard.inc.navbar')
       <aside id="page-content" class="page-content" style="margin-top: 60px;">
          <div style="margin-left: -20px;">
             @yield('dashboard')
@@ -39,6 +39,6 @@
       </aside>
    </div>
 
-   <script src="/js/custom.js"></script>
+   <script src="/js/dashboard.js"></script>
 </body>
 </html>

@@ -1,0 +1,23 @@
+
+/*---------------------
+	Header section
+-----------------------*/
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.header-section {
+	padding: 10px 0;
+}
+
+.scl_name{
+	font-size: 40px;
+	font-weight: 800px;
+}
+.scl_location{
+	font-size: 20px;
+}
+.nav_contact{
+	font-size: 18px;
+	text-align: right;
+}

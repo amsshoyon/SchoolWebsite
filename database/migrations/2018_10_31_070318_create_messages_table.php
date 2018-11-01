@@ -17,8 +17,8 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('designation');
-            $table->string('message');
-            $table->string('image');
+            $table->text('message');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@ class CreateSchoolContentsTable extends Migration
     {
         Schema::create('school_contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type')->unique();
-            $table->string('description');
+            $table->string('type');
+            $table->text('description');
             $table->timestamps();
         });
     }

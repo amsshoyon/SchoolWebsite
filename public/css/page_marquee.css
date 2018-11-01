@@ -1,0 +1,34 @@
+
+.marquee {
+  background: #db0909;
+  padding: 1.5rem 0;
+  width: 100%;
+  overflow-x: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+}
+.marquee div {
+  transform: translateX(0vw);
+  animation: marquee 20s linear infinite ;
+}
+.marquee div:hover {
+  animation-play-state: paused;
+}
+.marquee span {
+  display: inline-block;
+  margin: 0 3rem;
+}
+.marquee i {
+  margin-right: 0.5rem;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0vw);
+  }
+  100% {
+    transform: translateX(-100vw);
+  }
+}

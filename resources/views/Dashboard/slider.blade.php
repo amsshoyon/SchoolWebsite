@@ -1,8 +1,8 @@
-@extends('Layouts.dashboard')
+@extends('Dashboard.layout.dashboard')
 
 @section('dashboard')
 
- @include('Dashboard.Include.slider')
+ @include('Dashboard.Inc.slider')
 
 
 @endsection

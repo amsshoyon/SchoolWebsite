@@ -36,31 +36,33 @@ $(document).ready(function() {
 });
  /*Scroll to top when arrow up clicked END*/
 
-//Image preview
-  var loadFile = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('output');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
+//navbar initialization
 
-//Delete confirmation
+$(document).ready(function () {
+     $("#respMenu").aceResponsiveMenu({
+         resizeWidth: '768', // Set the same in Media query       
+         animationSpeed: 'fast', //slow, medium, fast
+         accoridonExpAll: false //Expands all the accordion menu on click
+     });
+});
 
-function deleletconfig(){
+//Wow initialization
 
-	$.confirm({
-	    title: 'Confirm Delete!',
-	    buttons: {
-	        confirm: function () {
-	            $.alert('Confirme!');
-	        },
-	        cancel: function () {
-	            $.alert('Cancele!');
-	        }
-	    }
-	});
+new WOW().init();
 
-}
+
+//navbar
+
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 120) {
+        $(".top_nav").addClass("navbar-fixed-top");
+    }if (scroll < 120) {
+        $(".top_nav").removeClass("navbar-fixed-top");
+    }
+}); 
+
+
+//members
 

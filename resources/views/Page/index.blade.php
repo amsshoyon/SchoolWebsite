@@ -1,14 +1,22 @@
-@extends('Layouts.page')
+@extends('Page.layout.page')
 
-@section('main_page')
-	@include('Page.Include.header')
-	@include('Page.Include.messages')
-	@include('Page.Include.mission')
-	@include('Page.Include.seperator_one')
-	{{-- @include('Page.Include.information') --}}
-	@include('Page.Include.routine')
-	
-	@include('Page.Include.events')
-	@include('Page.Include.contact')
-	@include('Page.Include.footer')
+@section('page_content')
+
+	@include('Page.inc.slider')
+	@include('Page.inc.marquee')
+	@include('Page.inc.about')
+	@include('Page.inc.messages')
+	<div class="clearfix"></div>
+	<div class="container-fluid seperator events_acvmnt" style="background-image: url(images/header.jpg);">
+		<div class="container">
+			<div class="col-md-6">
+				@include('Page.inc.achievement')
+			</div>
+			<div class="col-md-6">
+				@include('Page.inc.events')
+			</div>
+		</div>
+	</div>
+	@include('Page.inc.contact')
+
 @endsection 

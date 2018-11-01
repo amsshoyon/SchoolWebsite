@@ -1,0 +1,29 @@
+.messages{
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.message_head{
+	padding: 5px;
+	background-color: rgba(0,0,0,1);
+	border-radius: 10px 10px 0 0;
+	padding-top: 10px;
+	color: #fff;
+}
+
+.message_head span{
+	color: #F7D206;
+}
+.message_head img{
+	max-width: 70px;
+	margin-right: 10px;
+}
+
+.messages p{
+	font-size: 18px;
+}
+
+.message h3{
+	text-transform: uppercase;
+	font-weight: 700;
+}
