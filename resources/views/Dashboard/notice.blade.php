@@ -26,22 +26,28 @@
             </div>
 
             <div class="panel-body">
-                <form action="/Dashboard/notice" method="POST">
-                    {{ csrf_field() }}
+                    {!!Form::open(['action' => 'NoticeController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+
                     <div class="form-group">
-                        <label>Enter title:</label>
-                        <input type="text" class="form-control" name="title" placeholder="Enter title" required>
+                    <label for="file"></label>
+                      <input type="file" id="file" name="image">
                     </div>
-                    <div class="form-group">
-                        <label>Enter description:</label>
-                        <input type="text" class="form-control" name="description" placeholder="Enter description" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Enter file name</label>
-                        <input type="text" class="form-control" name="file" placeholder="Enter file" required>
-                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <fieldset  class="form-group">
+                      {!! Form::label('title', 'Add a Title: ') !!}
+                      {{Form::text('title',null,['value'=>'$notice->title','placeholder' => 'Image Title', 'class' => 'form-control'])}}
+                    </fieldset>
+
+                    <<input type="hidden" name="type" value="1">
+
+                    <div class="clearfix"></div>
+
+                    
+                    <div class="clearfix"></div>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                {!! Form::close() !!}
             </div>
 
         </div>
@@ -71,14 +77,14 @@
 
                     @foreach ($notices as $notice)
                     <tr>
-                    <td>{{ $notice->title }}</td>
-                        <td style="width:150px;">
-                            <a class='btn btn-info btn-xs' href="/Dashboard/notice/{{$notice->id}}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                            <form action="/Dashboard/notice/{{$notice->id}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button>
-                            </form>
+                        <td>{{ $notice->title }}</td>
+                        <td style="width: 250px;">
+
+                            {!!Form::open(['route' => ['notice.destroy', $notice->id], 'method' => 'DELETE'])!!}
+                                  <div class="col-md-6">
+                                    {{Form::submit('Delete', ['class' => 'btn btn-danger','onclick'=>'return deleletconfig()','style'=>'width:100%'])}}
+                                  </div>
+                              {!!Form::close()!!}
                         </td>
                     </tr>
                     @endforeach

@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Page.index');
-});
+// Route::get('/', function () {
+//     return view('Page.index');
+// });
+Route::get('/', 'PageController@index');
 
 Route::get('/About', function () {
     return view('Page.about');
@@ -35,6 +36,31 @@ Auth::routes();
 
 Route::get('/Admin', 'HomeController@index')->name('home');
 
+//Dashboard Profile Section
+Route::resource('/Dashboard/EditProfile', 'ProfileController');
+
+//Dashboard Email Section
+Route::resource('/Dashboard/EditEmail', 'EmailController');
+
+//Dashboard Password Section
+Route::resource('/Dashboard/EditPassword', 'PasswordController');
+
+//Dashboard Inbox Section
+Route::resource('/Dashboard/SentMessages', 'SentMsgController');
+
+
+//Dashboard Inbox Section
+Route::resource('/Dashboard/Trash', 'TrashController');
+
+//Dashboard Inbox Section
+Route::resource('/Dashboard/Draft', 'DraftController');
+
+
+
+
+
+
+
 //Achievements
 Route::resource('/Dashboard/Achievement', 'AchievementController');
 
@@ -44,11 +70,11 @@ Route::delete('/Dashboard/Achievement/{id}', 'AchievementController@destroy');
 
 
 //slider images
-Route::resource('/Dashboard/Slider', 'SliderController');
+Route::resource('/Dashboard/Slider', 'SliderImageController');
 
-Route::post('/Dashboard/Slider', 'SliderController@store');
+Route::post('/Dashboard/Slider', 'SliderImageController@store');
 
-Route::delete('/Dashboard/Slider/{id}', 'SliderController@destroy');
+Route::delete('/Dashboard/Slider/{id}', 'SliderImageController@destroy');
 
 
 //Members 
@@ -83,14 +109,11 @@ Route::resource('/Dashboard/importantlink', 'ImportantLinkController');
 // Social Media Link
 Route::resource('/Dashboard/sociallink', 'SocialLinkController');
 
-// Achivement
-Route::resource('/Dashboard/achivement', 'AchivementController');
-
 // Message
 Route::resource('/Dashboard/message', 'MessageController');
 
 // Message
-Route::resource('/Dashboard/website', 'WebsiteController');
+// Route::resource('/Dashboard/website', 'WebsiteController');
 
 // Message
 Route::resource('/Dashboard/event', 'EventController');

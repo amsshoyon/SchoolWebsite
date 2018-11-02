@@ -20,11 +20,18 @@
                 </div>
                 <div class="sidebar-header" style="margin-top: 50px;">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="/images/profile.jpg" alt="User picture">
+                        @php
+                            $user_image = auth()->user()->image;
+                        @endphp
+                        @if($user_image == '')
+                            <img class="img-responsive img-rounded" src="/images/profile.jpg" alt="User picture">
+                        @else
+                            <img class="img-responsive img-rounded" src="/storage/images/user/{{$user_image}}" alt="{{ auth()->user()->name }}">
+                        @endif
                     </div>
                     <div class="user-info">
                         <span class="user-name">
-                            <strong>UserName</strong>
+                            <strong>{{ auth()->user()->name}}</strong>
                         </span>
                         <span class="user-role">Administrator</span>
                         <span class="user-status">
@@ -79,7 +86,7 @@
                                     <li><a href="/Dashboard/importantlink">Important Link</a></li>
                                     <li><a href="/Dashboard/sociallink">Social Link</a></li>
                                     <li><a href="/Dashboard/achivement">Achivement</a></li>
-                                    <li><a href="/Dashboard/website">Website logo</a></li>
+                                    {{-- <li><a href="/Dashboard/website">Website logo</a></li> --}}
                                     <li><a href="/Dashboard/event">Event</a></li>
                                 </ul>
                             </div>

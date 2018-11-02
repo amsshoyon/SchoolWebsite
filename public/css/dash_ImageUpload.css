@@ -19,7 +19,7 @@
 
 /* Hide the file input using
 opacity */
-[type=file] {
+.photo_post [type=file] {
     position: absolute;
     filter: alpha(opacity=0);
     opacity: 0;

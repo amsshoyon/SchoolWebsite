@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Slider;
 use App\Http\Requests\SliderRequest;
 
-class SliderController extends Controller
+class SliderImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +19,11 @@ class SliderController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $sliders = Slider::get();
-        return view('dashboard.slider')->with(compact('sliders'));    
+        return view('dashboard.slider')->with(compact('sliders'));  
     }
 
     /**
@@ -42,8 +42,8 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SliderRequest $request){
-
+    public function store(SliderRequest $request)
+    {
         $image_name = time().'.'.$request->image->getClientOriginalExtension();
 
         // Uplaod image
@@ -59,8 +59,6 @@ class SliderController extends Controller
 
         return redirect('/Dashboard/Slider/')->with('success', 'Image Uploaded');
     }
-            
-    
 
     /**
      * Display the specified resource.
@@ -70,7 +68,7 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-       // 
+        //
     }
 
     /**
@@ -83,7 +81,7 @@ class SliderController extends Controller
     {
         $slider = Slider::find($id);
         $sliders = Slider::get();
-        return view('dashboard.slider',compact('sliders'),compact('slider'));  
+        return view('dashboard.slider',compact('sliders'),compact('slider')); 
     }
 
     /**
@@ -110,7 +108,6 @@ class SliderController extends Controller
 
         $update->save();             
         return redirect('/Dashboard/Slider/')->with('success', 'Image Updated');
-        
     }
 
     /**
@@ -119,8 +116,8 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-
+    public function destroy($id)
+    {
         $image = Slider::find($id);
 
         if(Storage::delete('public/images/slider/'.$image->image)){
@@ -128,5 +125,4 @@ class SliderController extends Controller
             return redirect('/Dashboard/Slider')->with('success', 'Photo Deleted');
         }
     }
-    
 }

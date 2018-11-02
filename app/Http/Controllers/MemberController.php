@@ -23,8 +23,8 @@ class MemberController extends Controller
     
     public function index()
     {
-        $Teachers = Member::get()->where('type','1');
-        $Govts = Member::get()->where('type','2');
+        $Teachers = Member::get()->where('type','2');
+        $Govts = Member::get()->where('type','1');
         $Staffs = Member::get()->where('type','3');
         $type = MemberType::all()->pluck('type', 'id');
         return view('Dashboard.member')->with(compact('Teachers','type','Govts','Staffs'));    

@@ -1,21 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Notice;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class NoticeController extends Controller
+use Illuminate\Http\Request;
+use App\Inbox;
+use App\Http\Requests\InboxRequest;
+use Session;
+use Response;
+
+class InboxController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $notices = Notice::get()->where('type','1');  //type 1 for notice
-        return view('Dashboard.notice', compact('notices'));
+        $query = Inbox::where('type', 0);
+        $users = $query->latest()->get();
+
+        return view('dashboard.inbox')->with(compact('users'));  
     }
 
     /**
@@ -25,7 +37,7 @@ class NoticeController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -36,20 +48,15 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        $notice = new Notice;
+        $store = new Inbox;
+        $store->name = $request->input('name');
+        $store->email = $request->input('email');
+        $store->subject = $request->input('subject');
+        $store->message = $request->input('message');
 
-        $image_name = time().'.'.$request->image->getClientOriginalExtension();
-
-        // Uplaod image
-        $path= $request->file('image')->storeAs('public/files/', $image_name);
-
-        $notice->file = $image_name;
-
-        $notice->title = $request["title"];
-        $notice->type = $request["type"];
-
-        $notice->save();
-        return back()->with('success', 'Added Successfully');
+        $store->save();
+        session()->flash('success', 'message has been sent');
+        return response()->json(['msg'=>'success'],200);
     }
 
     /**
@@ -60,7 +67,12 @@ class NoticeController extends Controller
      */
     public function show($id)
     {
+        $update=Inbox::findOrFail($id);
+        $update->view = '1';
+        $update->save();  
 
+        $view = Inbox::find($id);
+        return view('dashboard.ViewMsg',compact('view')); 
     }
 
     /**
@@ -93,12 +105,10 @@ class NoticeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
+    {
+        $delete = Inbox::find($id);
 
-        $notice = Notice::find($id);
-        if(Storage::delete('public/files/'.$notice->file)){
-            $notice->delete();
-            return back()->with('success', 'Deleted');
-        }
+        $delete->delete();
+        return back()->with('success', 'Message Deleted');
     }
 }

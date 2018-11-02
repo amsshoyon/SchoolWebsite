@@ -1,21 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Notice;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\User;
+use App\Http\Requests\EmailRequest;
 
-class AcademicFileController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() 
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $academics = Notice::get()->where('type','2');  //type 1 for notice
-        return view('Dashboard.academic', compact('academics'));
+        $id = auth()->user()->id;
+        $User = User::find($id);
+        return view('dashboard.EditEmail')->with(compact('User'));  
     }
 
     /**
@@ -25,7 +34,7 @@ class AcademicFileController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -36,20 +45,7 @@ class AcademicFileController extends Controller
      */
     public function store(Request $request)
     {
-        $notice = new Notice;
-
-        $image_name = time().'.'.$request->image->getClientOriginalExtension();
-
-        // Uplaod image
-        $path= $request->file('image')->storeAs('public/files/', $image_name);
-
-        $notice->file = $image_name;
-
-        $notice->title = $request["title"];
-        $notice->type = $request["type"];
-
-        $notice->save();
-        return back()->with('success', 'Added Successfully');
+        //
     }
 
     /**
@@ -71,8 +67,7 @@ class AcademicFileController extends Controller
      */
     public function edit($id)
     {
-        $academics = AcademicFile::find($id);
-        return view('Dashboard.editAcademic', compact('academics'));
+        //
     }
 
     /**
@@ -82,17 +77,13 @@ class AcademicFileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmailRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'=>'required',
-            'file'=>'required'
-        ]);
-        $academics = AcademicFile::find($id);
-        $academics->title = $request["title"];
-        $academics->file = $request["file"];
-        $academics->save();
-        return redirect('/Dashboard/academic')->with('success', 'Updated Successfully');
+        $update = User::findOrFail($id);
+        $update->email = $request['email'];
+
+        $update->save();             
+        return redirect('/Dashboard/EditEmail')->with('success', 'Email Updated');
     }
 
     /**
@@ -103,10 +94,6 @@ class AcademicFileController extends Controller
      */
     public function destroy($id)
     {
-        $notice = Notice::find($id);
-        if(Storage::delete('public/files/'.$notice->file)){
-            $notice->delete();
-            return back()->with('success', 'Deleted');
-        }
+        //
     }
 }

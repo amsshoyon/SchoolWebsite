@@ -34,10 +34,10 @@
           <div class="col-md-10 col-lg-offset-1">
 
             @if(isset($slider))
-                {!! Form::model($slider, ['enctype' => 'multipart/form-data','method' => 'PUT', 'action' => ['SliderController@update',$slider->id]]) !!}
+                {!! Form::model($slider, ['enctype' => 'multipart/form-data','method' => 'PUT', 'action' => ['SliderImageController@update',$slider->id]]) !!}
             @else
             
-                {!!Form::open(['action' => 'SliderController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                {!!Form::open(['action' => 'SliderImageController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
             @endif
                 <div class="col-md-4">
                   @if(isset($slider))
