@@ -29,8 +29,8 @@
                     {!!Form::open(['action' => 'NoticeController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
 
                     <div class="form-group">
-                    <label for="file"></label>
-                      <input type="file" id="file" name="image">
+                        <label for="file">Uploar File: (Optional)</label>
+                        <input type="file" id="file" name="image">
                     </div>
 
                     <div class="clearfix"></div>
@@ -40,7 +40,7 @@
                       {{Form::text('title',null,['value'=>'$notice->title','placeholder' => 'Image Title', 'class' => 'form-control'])}}
                     </fieldset>
 
-                    <<input type="hidden" name="type" value="1">
+                    <input type="hidden" name="type" value="1">
 
                     <div class="clearfix"></div>
 

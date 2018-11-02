@@ -1,45 +1,52 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: -20px;">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-      <li data-target="#myCarousel" data-slide-to="5"></li>
-      <li data-target="#myCarousel" data-slide-to="6"></li>
+        @php
+            $i = 0;
+            $SliderActive = '';
+        @endphp
+
+        @foreach($Sliders as $Slider)
+            @php
+                if ($i == 0) {
+                    $SliderActive = 'active';
+                }else{
+                    $SliderActive = '';
+                }
+            @endphp
+            <li data-target="#myCarousel" data-slide-to="{{$i}}" class="{{$SliderActive}}"></li>
+            @php
+                $i++;
+            @endphp
+        @endforeach
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
+        @php
+            $i = 0;
+        @endphp
+        @foreach($Sliders as $Slider)
+            @php
+                if ($i == 0) {
+                    $SliderActive = 'active';
+                }else{
+                    $SliderActive = '';
+                }
+            @endphp
 
-      <div class="item active">
-        <img src="images/1.jpg" alt="Los Angeles" style="width:100%;">
-        {{-- <div class="carousel-caption">
-          <h3>Los Angeles</h3>
-          <p>LA is always so much fun!</p>
-        </div> --}}
-      </div>
+              <div class="item {{$SliderActive}}">
+                <img src="/storage/images/slider/{{$Slider->image}}" alt="Los Angeles" style="width:100%;">
+                <div class="carousel-caption">
+                  <h3 class="text-center" style="font-size:30px;">{{$Slider->title}}</h3>
+                  <p class="text-center"  style="font-size:20px;">{{$Slider->subtitle}}</p>
+                </div>
+              </div>
 
-      <div class="item">
-        <img src="images/12.jpg" alt="Chicago" style="width:100%;">
-      </div>
-
-      <div class="item">
-        <img src="images/5.jpg" alt="Chicago" style="width:100%;">
-      </div>
-
-      <div class="item">
-        <img src="images/11.jpg" alt="Chicago" style="width:100%;">
-      </div>
-
-      <div class="item">
-        <img src="images/17.jpg" alt="Chicago" style="width:100%;">
-      </div>
-
-      <div class="item">
-        <img src="images/18.jpg" alt="Chicago" style="width:100%;">
-      </div>
+              @php
+                  $i++;
+              @endphp
+        @endforeach
 
   
     </div>

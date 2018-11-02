@@ -16,18 +16,17 @@
 // });
 Route::get('/', 'PageController@index');
 
-Route::get('/About', function () {
-    return view('Page.about');
-});
+Route::get('/About', 'PageController@about');
+
+Route::get('/Members/GovtBody', 'PageController@GovtBody');
+Route::get('/Members/Teachers', 'PageController@teachers');
+Route::get('/Members/Staffs', 'PageController@staffs');
 
 Route::get('/Payment', function () {
     return view('Page.rules');
 });
 
 
-Route::get('/Members/GovtBody', function () {
-    return view('Page.members');
-});
 
 
 //Admin Panal

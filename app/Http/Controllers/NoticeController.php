@@ -38,12 +38,15 @@ class NoticeController extends Controller
     {
         $notice = new Notice;
 
-        $image_name = time().'.'.$request->image->getClientOriginalExtension();
+        if ($request->hasFile('image')) {
 
-        // Uplaod image
-        $path= $request->file('image')->storeAs('public/files/', $image_name);
+            $image_name = time().'.'.$request->image->getClientOriginalExtension();
 
-        $notice->file = $image_name;
+            // Uplaod image
+            $path= $request->file('image')->storeAs('public/files/', $image_name);
+            $notice->file = $image_name;
+
+        }   
 
         $notice->title = $request["title"];
         $notice->type = $request["type"];

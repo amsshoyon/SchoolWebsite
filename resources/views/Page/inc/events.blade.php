@@ -8,74 +8,30 @@
 
 <ul class="media-list">
 
+@foreach($Events as $Event)
 	<li class="media events box_shadow">
 	    <div class="media-left">
 	        <div class="panel panel-danger text-center date">
 	            <div class="panel-heading month">
 	                <span class="panel-title strong">
-	                    Mar
+	                    {{str_limit($Event->month, 3, '')}}
 	                </span>
 	            </div>
 	            <div class="panel-body day text-danger">
-	                23
+	                {{str_limit($Event->date, 2, '')}}
 	            </div>
 	        </div>
 	    </div>
 	    <div class="media-body">
 	        <h4 class="media-heading">
-	            Pulvinar Mauris Eu
+	            {{$Event->title}}
 	        </h4>
 	        <span>
-	            Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel ex vestibulum congue.
+	            {{str_limit($Event->description, 100 ,'...')}}
 	        </span>
 	    </div>
 	</li>
-
-	<li class="media events box_shadow">
-	    <div class="media-left">
-	        <div class="panel panel-danger text-center date">
-	            <div class="panel-heading month">
-	                <span class="panel-title strong">
-	                    Mar
-	                </span>
-	            </div>
-	            <div class="panel-body day text-danger">
-	                23
-	            </div>
-	        </div>
-	    </div>
-	    <div class="media-body">
-	        <h4 class="media-heading">
-	            Pulvinar Mauris Eu
-	        </h4>
-	        <span>
-	            Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel ex vestibulum congue.
-	        </span>
-	    </div>
-	</li>
-
-	<li class="media events box_shadow">
-	    <div class="media-left">
-	        <div class="panel panel-danger text-center date">
-	            <div class="panel-heading month">
-	                <span class="panel-title strong">
-	                    Mar
-	                </span>
-	            </div>
-	            <div class="panel-body day text-danger">
-	                23
-	            </div>
-	        </div>
-	    </div>
-	    <div class="media-body">
-	        <h4 class="media-heading">
-	            Pulvinar Mauris Eu
-	        </h4>
-	        <span>
-	            Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel ex vestibulum congue.
-	        </span>
-	    </div>
-	</li>
+@endforeach
 
 </ul>
 

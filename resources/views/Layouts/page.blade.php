@@ -6,7 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="csrf-token" content="{{ csrf_token() }}">
-   <title>AMSSHOYON: DASHBOARD</title>
+   <title>ইকরা আইডিয়াল স্কুল: DASHBOARD</title>
    <link rel="icon" type="image/ico" href="images/logo/logo.png" />
    <link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet"> 
 

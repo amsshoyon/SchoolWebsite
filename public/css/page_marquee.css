@@ -9,6 +9,7 @@
   position: absolute;
   color: #fff;
   font-size: 20px;
+  height: 60px;
 }
 .marquee div {
   transform: translateX(0vw);

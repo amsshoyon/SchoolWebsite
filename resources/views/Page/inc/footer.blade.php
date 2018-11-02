@@ -3,28 +3,24 @@
     	<div class="row">
         	<div class="col-lg-4  col-md-4 col-sm-4">
             	<div class="footer_dv">
-                	<h4>Services</h4>
+                	<h4>Important Links</h4> 
                 	<ul>
-                    	<li class="line_rv"><a href="canon-printer-support.php">Canon Printer Support</a></li>
-               
-                        <li><a href="hp-printer-support.php">Hp printer Support</a></li>
-                        <li><a href="dell-printer-support.php">Dell Printer Support</a></li>
-                        <li><a href="epson-printer-support.php">Epson printer Support</a></li>
-                        <li><a href="samsung-printer-support.php">Samsung Printer Support</a></li>
-                        <li><a href="lexmark-printer-support.php">Lexmark Printer Support</a></li>
+                        @foreach($ImportantLinks as $ImportantLink)
+                    	<li class="line_rv"><a href="{{$ImportantLink->link}}">{{$ImportantLink->title}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4  col-md-4 col-sm-4">
+
             	<div class="footer_dv">
-                	<h4>Services</h4>
+                	<h4>Navigations</h4>
                 	<ul>
-                    	<li><a href="tosiba-printer-support.php">Toshiba Printer Support</a></li>
-                        <li><a href="panasonic-printer-support.php">Panasonic Printer Support</a></li>
-                        <li><a href="xerox-printer-support.php">Xerox Printer Support</a></li>
-                        <li><a href="brother-printer-support.php">Brother printer support</a></li>
-                        <li><a href="zebra-printer-support.php">Zebra printer support</a></li>
-                        <li><a href="lenovo-printer-support.php">Lenovo printer Support</a></li>
+                    	<li><a href="">Home</a></li>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">History</a></li>
+                        <li><a href="">Our Members</a></li>
+                        <li><a href="">Mission</a></li>
                        
                         
                     </ul>
@@ -33,8 +29,8 @@
             <div class="col-lg-4  col-md-4 col-sm-4">
             	<div class="footer_dv">
                 	<h4>Contact us</h4>
-                	<p>Printer customer Support</p>
-      			<p>USA (TOLL FREE) 8322372800<br>
+                	<p>মিন্নত প্লাজা (৩য় তলা), কলাকান্দি, আব্দুল্লাহপুর, দক্ষিণ কেরানীগঞ্জ, ঢাকা-১৩১১ </p>
+      			<p>+880-10000-******<br>
 
 				
                 </p></div>

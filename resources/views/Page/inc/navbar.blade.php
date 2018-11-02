@@ -62,15 +62,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/Members/Teachers">
                             <i class="fa fa-database" aria-hidden="true"></i>
                             Teachers
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/Members/Staffs">
                             <i class="fa fa-database" aria-hidden="true"></i>
-                            Stuffs
+                            Staffs
                         </a>
                     </li>
                 </ul>

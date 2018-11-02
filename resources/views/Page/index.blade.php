@@ -3,8 +3,8 @@
 @section('page_content')
 
 	@include('Page.inc.slider')
-	@include('Page.inc.marquee')
-	@include('Page.inc.about')
+	
+	{{-- @include('Page.inc.about') --}}
 	@include('Page.inc.messages')
 	<div class="clearfix"></div>
 	<div class="container-fluid seperator events_acvmnt" style="background-image: url(images/header.jpg);">

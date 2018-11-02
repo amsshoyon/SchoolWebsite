@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label>Select date</label>
-                        <input type="date" class="form-control" name="date" placeholder="Select date" required>
+                        <input type="text" class="form-control" name="date" required>
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>

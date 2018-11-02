@@ -16,8 +16,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        return view('Dashboard.messages', compact('messages'));
+        $message = Message::find('1');
+        return view('Dashboard.messages', compact('message'));
     }
 
     /**
@@ -49,7 +49,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::find($id);
+        return view('Dashboard.messages', compact('message'));
     }
 
     /**
