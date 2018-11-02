@@ -47,7 +47,8 @@ class SliderImageController extends Controller
         $image_name = time().'.'.$request->image->getClientOriginalExtension();
 
         // Uplaod image
-        $path= $request->file('image')->storeAs('public/images/slider/', $image_name);
+        // $path= $request->file('image')->storeAs('public/images/slider/', $image_name);
+        $path= $request->file('image')->move(public_path('/images/slider'), $image_name);
 
         // Upload Photo
         $image = new Slider;
@@ -97,9 +98,12 @@ class SliderImageController extends Controller
 
         if ($request->hasFile('image')) {
 
-            Storage::delete('public/images/slider/'.$update->image);
+            if(file_exists(public_path('/images/slider/'.$update->image))){
+                File::delete('/images/slider/'.$update->image);
+            }
+            
             $image_name = time().'.'.$request->image->getClientOriginalExtension();
-            $path= $request->file('image')->storeAs('public/images/slider/', $image_name);
+            $path= $request->file('image')->move(public_path('/images/slider'), $image_name);
             $update->image = $image_name;
 
         }   
@@ -120,7 +124,7 @@ class SliderImageController extends Controller
     {
         $image = Slider::find($id);
 
-        if(Storage::delete('public/images/slider/'.$image->image)){
+        if(unlink(public_path('/images/slider/'.$image->image))){
             $image->delete();
             return redirect('/Dashboard/Slider')->with('success', 'Photo Deleted');
         }

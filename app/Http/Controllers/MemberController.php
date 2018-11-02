@@ -51,7 +51,7 @@ class MemberController extends Controller
         $image_name = time().'.'.$request->image->getClientOriginalExtension();
 
         // Uplaod image
-        $path= $request->file('image')->storeAs('public/images/member/', $image_name);
+        $path= $request->file('image')->move(public_path('/images/member'), $image_name);
 
         // Upload Photo
         $image = new Member;
@@ -107,9 +107,12 @@ class MemberController extends Controller
 
         if ($request->hasFile('image')) {
 
-            Storage::delete('public/images/member/'.$update->image);
+            if(file_exists(public_path('/images/member/'.$update->image))){
+                File::delete('/images/member/'.$update->image);
+            }
+
             $image_name = time().'.'.$request->image->getClientOriginalExtension();
-            $path= $request->file('image')->storeAs('public/images/member/', $image_name);
+            $path= $request->file('image')->move(public_path('/images/member'), $image_name);
             $update->image = $image_name;
 
         }   
@@ -132,9 +135,9 @@ class MemberController extends Controller
 
         $image = Member::find($id);
 
-        if(Storage::delete('public/images/member/'.$image->image)){
+        if(unlink(public_path('/images/member/'.$image->image))){
             $image->delete();
-            return redirect('/Dashboard/Member')->with('success', 'Member Deleted');
+            return back()->with('success', 'Photo Deleted');
         }
     }
     

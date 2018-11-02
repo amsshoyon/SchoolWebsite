@@ -36,7 +36,7 @@
             @endphp
 
               <div class="item {{$SliderActive}}">
-                <img src="/storage/images/slider/{{$Slider->image}}" alt="Los Angeles" style="width:100%;">
+                <img src="/images/slider/{{$Slider->image}}" alt="Los Angeles" style="width:100%;">
                 <div class="carousel-caption">
                   <h3 class="text-center" style="font-size:30px;">{{$Slider->title}}</h3>
                   <p class="text-center"  style="font-size:20px;">{{$Slider->subtitle}}</p>

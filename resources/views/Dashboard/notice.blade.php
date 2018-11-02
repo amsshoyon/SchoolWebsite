@@ -26,11 +26,23 @@
             </div>
 
             <div class="panel-body">
-                    {!!Form::open(['action' => 'NoticeController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                    @if(isset($notice))
+                        {!! Form::model($notice, ['enctype' => 'multipart/form-data','method' => 'PUT', 'action' => ['NoticeController@update',$notice->id]]) !!}
+                    @else
+                    
+                        {!!Form::open(['action' => 'NoticeController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                    @endif
 
                     <div class="form-group">
-                        <label for="file">Uploar File: (Optional)</label>
-                        <input type="file" id="file" name="image">
+                        @php
+                            if (isset($notice)) {
+                                $notice_file = $notice->file;
+                            }else{
+                                $notice_file = '';
+                            }
+                        @endphp
+                        <label for="file">Uploar File (Optional): {{$notice_file}}</label>
+                        <input type="file" id="file" name="file">
                     </div>
 
                     <div class="clearfix"></div>
@@ -40,13 +52,23 @@
                       {{Form::text('title',null,['value'=>'$notice->title','placeholder' => 'Image Title', 'class' => 'form-control'])}}
                     </fieldset>
 
+                    <fieldset  class="form-group">
+                      {!! Form::label('description', 'Add a Description(Optional): ') !!}
+                      {{Form::textarea('description',null,['value'=>'$notice->description','class' => 'form-control'])}}
+                    </fieldset>
+
                     <input type="hidden" name="type" value="1">
 
                     <div class="clearfix"></div>
 
                     
                     <div class="clearfix"></div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    @if(isset($notice))
+                        {{Form::submit('Update', ['class'=>'btn btn-info'])}}
+                        <a href="/Dashboard/notice" class="btn btn-success">Reset</a>
+                    @else
+                      {{Form::submit('Upload', ['class'=>'btn btn-info'])}}
+                    @endif
                 {!! Form::close() !!}
             </div>
 
@@ -69,24 +91,39 @@
             <table class="table table-bordered table-hover panel panel-info">
             <thead class="panel-heading">
                 <tr>
-                    <th>Title</th>
+                    <th width="50px">notices</th>
+                    <th width="250px;">Title</th>
+                    <th>Description</th>
+                    <th width="200px;">Attatchment</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody class="panel-body">
 
+                    @php
+                        $counter = 1;
+                    @endphp
                     @foreach ($notices as $notice)
                     <tr>
+                        <td>{{ $counter }}</td>
                         <td>{{ $notice->title }}</td>
+                        <td>{{ $notice->description }}</td>
+                        <td><a href="/files/{{$notice->file}}">{{$notice->file}}</a></td>
                         <td style="width: 250px;">
 
                             {!!Form::open(['route' => ['notice.destroy', $notice->id], 'method' => 'DELETE'])!!}
                                   <div class="col-md-6">
+                                    {{link_to_route('notice.edit','Edit',[$notice->id],['class'=>'btn btn-success', 'style'=>'padding:5px; width:90px;color:#fff; '])}}
+                                  </div>
+                                  <div class="col-md-6">
                                     {{Form::submit('Delete', ['class' => 'btn btn-danger','onclick'=>'return deleletconfig()','style'=>'width:100%'])}}
                                   </div>
-                              {!!Form::close()!!}
+                            {!!Form::close()!!}
                         </td>
                     </tr>
+                    @php
+                        $counter++;
+                    @endphp
                     @endforeach
 
             </tbody>

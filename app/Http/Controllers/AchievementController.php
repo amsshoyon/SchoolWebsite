@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Achievement;
@@ -47,7 +48,7 @@ class AchievementController extends Controller
         $image_name = time().'.'.$request->image->getClientOriginalExtension();
 
         // Uplaod image
-        $path= $request->file('image')->storeAs('public/images/achievement/', $image_name);
+        $path= $request->file('image')->move(public_path('/images/achievement'), $image_name);
 
         // Upload Photo
         $image = new Achievement;
@@ -100,9 +101,12 @@ class AchievementController extends Controller
 
         if ($request->hasFile('image')) {
 
-            Storage::delete('public/images/achievement/'.$update->image);
+            if(file_exists(public_path('/images/achievement/'.$update->image))){
+                File::delete('/images/message/'.$update->image);
+            }
+            
             $image_name = time().'.'.$request->image->getClientOriginalExtension();
-            $path= $request->file('image')->storeAs('public/images/achievement/', $image_name);
+            $path= $request->file('image')->move(public_path('/images/achievement'), $image_name);
             $update->image = $image_name;
 
         }   
@@ -125,9 +129,9 @@ class AchievementController extends Controller
 
         $delete = Achievement::find($id);
 
-        if(Storage::delete('public/images/achievement/'.$delete->image)){
+        if(unlink(public_path('/images/achievement/'.$delete->image))){
             $delete->delete();
-            return redirect('/Dashboard/Achievement/')->with('success', 'Achievement Deleted');
+            return back()->with('success', 'Deleted');
         }
     }
     

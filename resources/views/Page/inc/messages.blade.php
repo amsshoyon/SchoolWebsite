@@ -10,7 +10,7 @@
 			<div class="col-md-6" >
 				<div class="col-md-12 message_head">
 					<div class="" style="display: inline-block;">
-						<img src="/storage/images/message/{{$Message->image}}" class="img-responsive img-rounded">
+						<img src="/images/message/{{$Message->image}}" class="img-responsive img-rounded">
 					</div>
 					<div class="title" style="display: inline-block;">
 						<h3><b><span>Message From:</span> {{$Message->designation}}</b></h3>

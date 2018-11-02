@@ -13,7 +13,7 @@
   <div class="card-media">
     <!-- media container -->
     <div class="card-media-object-container">
-      <div class="card-media-object" style="background-image: url(/storage/images/achievement/{{$Achievement->image}});"></div>
+      <div class="card-media-object" style="background-image: url(/images/achievement/{{$Achievement->image}});"></div>
     </div>
     <!-- body container -->
     <div class="card-media-body">

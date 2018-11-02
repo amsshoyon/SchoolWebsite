@@ -33,7 +33,7 @@
 
             <div class="col-md-4">
               @if(isset($message->image))
-                <img id="output" class="img-responsive" src="/storage/images/message/{{$message->image}}" style="width:100%;height: 300px;" >
+                <img id="output" class="img-responsive" src="/images/message/{{$message->image}}" style="width:100%;height: 300px;" >
                 <div class="photo_post">
                   {{Form::file('image', ['class'=>'file', 'id'=>'f02','placeholder'=>'Insert Image', 'onchange'=>'loadFile(event)'])}}
                   {!! Form::label('f02', 'Change Image') !!}

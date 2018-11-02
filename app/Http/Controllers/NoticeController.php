@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Notice;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\NoticeRequest;
+use File;
 
 class NoticeController extends Controller
 {
@@ -34,21 +35,22 @@ class NoticeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NoticeRequest $request)
     {
         $notice = new Notice;
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('file')) {
 
-            $image_name = time().'.'.$request->image->getClientOriginalExtension();
+            $file_name = time().'.'.$request->file->getClientOriginalExtension();
 
             // Uplaod image
-            $path= $request->file('image')->storeAs('public/files/', $image_name);
-            $notice->file = $image_name;
+            $path= $request->file('file')->move(public_path('/files/'), $file_name);
+            $notice->file = $file_name;
 
         }   
 
         $notice->title = $request["title"];
+        $notice->description = $request["description"];
         $notice->type = $request["type"];
 
         $notice->save();
@@ -74,7 +76,9 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $notice = Notice::find($id);
+        $notices = Notice::get()->where('type','1'); 
+        return view('Dashboard.notice',compact('notice','notices')); 
     }
 
     /**
@@ -84,9 +88,26 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NoticeRequest $request, $id)
     {
-        //
+        $update=Notice::findOrFail($id);
+
+        if ($request->hasFile('file')) {
+
+            if(file_exists(public_path('/files/'.$update->file))){
+                File::delete('/files/'.$update->file);
+            }
+            
+            $file_name = time().'.'.$request->file->getClientOriginalExtension();
+            $path= $request->file('file')->move(public_path('/files/'),$file_name);
+            $update->file = $file_name;
+
+        }   
+        $update->title = $request['title'];
+        $update->description = $request['description'];
+
+        $update->save();             
+        return redirect('/Dashboard/notice/')->with('success', 'Notice Updated');
     }
 
     /**
@@ -98,10 +119,11 @@ class NoticeController extends Controller
     public function destroy($id)
     {   
 
-        $notice = Notice::find($id);
-        if(Storage::delete('public/files/'.$notice->file)){
-            $notice->delete();
-            return back()->with('success', 'Deleted');
+        $delete = notice::find($id);
+
+        if(unlink(public_path('/files/'.$delete->file))){
+            $delete->delete();
+            return back()->with('success', 'Notice Deleted');
         }
     }
 }

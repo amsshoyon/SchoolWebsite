@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\MessageRequest;
@@ -77,9 +78,12 @@ class MessageController extends Controller
 
         if ($request->hasFile('image')) {
 
-            Storage::delete('public/images/message/'.$messages->image);
+            if(file_exists(public_path('/images/message/'.$messages->image))){
+                File::delete('/images/message/'.$messages->image);
+            }
+            
             $image_name = time().'.'.$request->image->getClientOriginalExtension();
-            $path= $request->file('image')->storeAs('public/images/message/', $image_name);
+            $path= $request->file('image')->move(public_path('/images/message'), $image_name);
             $messages->image = $image_name;
 
         }   
@@ -100,7 +104,12 @@ class MessageController extends Controller
     public function destroy($id)
     {
         $messages = Message::find($id);
-        $messages->delete();
+
+        if(unlink(public_path('/images/message/'.$messages->image))){
+            $image->delete();
+            return back()->with('success', 'Deleted');
+            $messages->delete();
+        }
         return back();
     }
 }
