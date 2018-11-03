@@ -2,7 +2,7 @@
 
 @section('dashboard')
 
-@include('Dashboard.inc.events')
+@include('Dashboard.inc.ImpLinks')
 
 
 @endsection

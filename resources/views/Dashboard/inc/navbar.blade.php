@@ -26,7 +26,7 @@
                         @if($user_image == '')
                             <img class="img-responsive img-rounded" src="/images/profile.jpg" alt="User picture">
                         @else
-                            <img class="img-responsive img-rounded" src="/storage/images/user/{{$user_image}}" alt="{{ auth()->user()->name }}">
+                            <img class="img-responsive img-rounded" src="/images/user/{{$user_image}}" alt="{{ auth()->user()->name }}">
                         @endif
                     </div>
                     <div class="user-info">
@@ -85,7 +85,7 @@
                                     <li><a href="/Dashboard/einfo">E-Info</a></li>
                                     <li><a href="/Dashboard/importantlink">Important Link</a></li>
                                     {{-- <li><a href="/Dashboard/sociallink">Social Link</a></li> --}}
-                                    <li><a href="/Dashboard/achivement">Achivement</a></li>
+                                    <li><a href="/Dashboard/Achivement">Achivement</a></li>
                                     {{-- <li><a href="/Dashboard/website">Website logo</a></li> --}}
                                     <li><a href="/Dashboard/event">Event</a></li>
                                 </ul>

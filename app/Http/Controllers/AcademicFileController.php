@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Notice;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\NoticeRequest;
+use File;
 
 class AcademicFileController extends Controller
 {
@@ -14,7 +15,7 @@ class AcademicFileController extends Controller
      */
     public function index()
     {
-        $academics = Notice::get()->where('type','2');  //type 1 for notice
+        $academics = Notice::get()->where('type','2');  //type 2 for academic file
         return view('Dashboard.academic', compact('academics'));
     }
 
@@ -34,21 +35,25 @@ class AcademicFileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NoticeRequest $request)
     {
-        $notice = new Notice;
+        $store = new Notice;
 
-        $image_name = time().'.'.$request->image->getClientOriginalExtension();
+        if ($request->hasFile('file')) {
 
-        // Uplaod image
-        $path= $request->file('image')->storeAs('public/files/', $image_name);
+            $file_name = time().'.'.$request->file->getClientOriginalExtension();
 
-        $notice->file = $image_name;
+            // Uplaod image
+            $path= $request->file('file')->move(public_path('/files/'), $file_name);
+            $store->file = $file_name;
 
-        $notice->title = $request["title"];
-        $notice->type = $request["type"];
+        }   
 
-        $notice->save();
+        $store->title = $request["title"];
+        $store->description = $request["description"];
+        $store->type = $request["type"];
+
+        $store->save();
         return back()->with('success', 'Added Successfully');
     }
 
@@ -60,7 +65,7 @@ class AcademicFileController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -71,8 +76,9 @@ class AcademicFileController extends Controller
      */
     public function edit($id)
     {
-        $academics = AcademicFile::find($id);
-        return view('Dashboard.editAcademic', compact('academics'));
+        $academic = Notice::find($id);
+        $academics = Notice::get()->where('type','2'); 
+        return view('Dashboard.academic',compact('academics','academic')); 
     }
 
     /**
@@ -82,17 +88,26 @@ class AcademicFileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NoticeRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'=>'required',
-            'file'=>'required'
-        ]);
-        $academics = AcademicFile::find($id);
-        $academics->title = $request["title"];
-        $academics->file = $request["file"];
-        $academics->save();
-        return redirect('/Dashboard/academic')->with('success', 'Updated Successfully');
+        $update=Notice::findOrFail($id);
+
+        if ($request->hasFile('file')) {
+
+            if(file_exists(public_path('/files/'.$update->file))){
+                File::delete('/files/'.$update->file);
+            }
+            
+            $file_name = time().'.'.$request->file->getClientOriginalExtension();
+            $path= $request->file('file')->move(public_path('/files/'),$file_name);
+            $update->file = $file_name;
+
+        }   
+        $update->title = $request['title'];
+        $update->description = $request['description'];
+
+        $update->save();             
+        return redirect('/Dashboard/academic/')->with('success', 'Notice Updated');
     }
 
     /**
@@ -102,11 +117,13 @@ class AcademicFileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $notice = Notice::find($id);
-        if(Storage::delete('public/files/'.$notice->file)){
-            $notice->delete();
-            return back()->with('success', 'Deleted');
+    {   
+
+        $delete = notice::find($id);
+
+        if(unlink(public_path('/files/'.$delete->file))){
+            $delete->delete();
+            return back()->with('success', 'file Deleted');
         }
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SocialLink extends Model
+class Link extends Model
 {
     //
 }

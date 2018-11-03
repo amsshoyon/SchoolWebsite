@@ -1,6 +1,4 @@
-@extends('Layouts.dashboard')
 
-@section('dashboard')
 
  {{-- Field To Update things --}}
 
@@ -26,30 +24,30 @@
             </div>
 
             <div class="panel-body">
-                    @if(isset($E_Info))
-                        {!! Form::model($E_Info, ['method' => 'PUT', 'action' => ['E_LinkController@update',$E_Info->id]]) !!}
+                    @if(isset($ImpLink))
+                        {!! Form::model($ImpLink, ['method' => 'PUT', 'action' => ['ImpLinkController@update',$ImpLink->id]]) !!}
                     @else
                     
-                        {!!Form::open(['action' => 'E_LinkController@store','method' => 'POST'])!!}
+                        {!!Form::open(['action' => 'ImpLinkController@store','method' => 'POST'])!!}
                     @endif
 
                     <fieldset  class="form-group">
                       {!! Form::label('title', 'Add a Title: ') !!}
-                      {{Form::text('title',null,['value'=>'$E_Info->title', 'class' => 'form-control'])}}
+                      {{Form::text('title',null,['value'=>'$ImpLink->title', 'class' => 'form-control'])}}
                     </fieldset>
 
                     <fieldset  class="form-group">
                       {!! Form::label('link', 'Add E-Link: ') !!}
-                      {{Form::text('link',null,['value'=>'$E_Info->link','class' => 'form-control'])}}
+                      {{Form::text('link',null,['value'=>'$ImpLink->link','class' => 'form-control'])}}
                     </fieldset>
 
-                    <input type="hidden" name="type" value="1">  {{-- Type 1 for E-link, 2 for Imp Link --}}
+                    <input type="hidden" name="type" value="2">  {{-- Type 1 for E-link, 2 for Imp Link --}}
 
                     <div class="clearfix"></div>
 
-                    @if(isset($E_Info))
+                    @if(isset($ImpLink))
                         {{Form::submit('Update', ['class'=>'btn btn-success'])}}
-                        <a href="/Dashboard/einfo" class="btn btn-default">Reset</a>
+                        <a href="/Dashboard/importantlink" class="btn btn-default">Reset</a>
                     @else
                         {{Form::submit('Add', ['class'=>'btn btn-info'])}}
                     @endif
@@ -86,16 +84,16 @@
                     @php
                         $counter = 1;
                     @endphp
-                    @foreach ($E_Infos as $E_Info)
+                    @foreach ($ImpLinks as $ImpLink)
                     <tr>
                         <td>{{ $counter }}</td>
-                        <td>{{ $E_Info->title }}</td>
-                        <td>{{ $E_Info->link }}</td>
+                        <td>{{ $ImpLink->title }}</td>
+                        <td>{{ $ImpLink->link }}</td>
                         <td style="width: 250px;">
 
-                            {!!Form::open(['route' => ['einfo.destroy', $E_Info->id], 'method' => 'DELETE'])!!}
+                            {!!Form::open(['route' => ['importantlink.destroy', $ImpLink->id], 'method' => 'DELETE'])!!}
                                   <div class="col-md-6">
-                                    {{link_to_route('einfo.edit','Edit',[$E_Info->id],['class'=>'btn btn-success', 'style'=>'padding:5px; width:90px;color:#fff; '])}}
+                                    {{link_to_route('importantlink.edit','Edit',[$ImpLink->id],['class'=>'btn btn-success', 'style'=>'padding:5px; width:90px;color:#fff; '])}}
                                   </div>
                                   <div class="col-md-6">
                                     {{Form::submit('Delete', ['class' => 'btn btn-danger','onclick'=>'return deleletconfig()','style'=>'width:100%'])}}
@@ -113,7 +111,3 @@
             </table>
         </div>
     </div>
-
-
-
-@endsection

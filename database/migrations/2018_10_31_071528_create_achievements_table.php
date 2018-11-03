@@ -15,7 +15,7 @@ class CreateAchievementsTable extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('description');
             $table->string('image')->nullable();
             $table->string('date');

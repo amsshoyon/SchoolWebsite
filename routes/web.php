@@ -74,7 +74,7 @@ Route::resource('/Dashboard/Slider', 'SliderImageController');
 Route::post('/Dashboard/Slider', 'SliderImageController@store');
 
 Route::delete('/Dashboard/Slider/{id}', 'SliderImageController@destroy');
-
+ 
 
 //Members 
 Route::resource('/Dashboard/Member', 'MemberController');
@@ -100,13 +100,13 @@ Route::resource('/Dashboard/notice', 'NoticeController');
 Route::resource('/Dashboard/academic', 'AcademicFileController');
 
 // E-Info
-Route::resource('/Dashboard/einfo', 'EInfoController');
+Route::resource('/Dashboard/einfo', 'E_LinkController');
 
 // Important Link
-Route::resource('/Dashboard/importantlink', 'ImportantLinkController');
+Route::resource('/Dashboard/importantlink', 'ImpLinkController');
 
 // Social Media Link
-Route::resource('/Dashboard/sociallink', 'SocialLinkController');
+//Route::resource('/Dashboard/sociallink', 'SocialLinkController');
 
 // Message
 Route::resource('/Dashboard/message', 'MessageController');

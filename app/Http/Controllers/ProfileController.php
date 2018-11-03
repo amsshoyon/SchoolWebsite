@@ -82,18 +82,23 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request, $id)
     {
         $update = User::findOrFail($id);
+
         if ($request->hasFile('image')) {
 
-            
-            $old_image = $update->image;
-            if (!empty($old_image)) {
-                Storage::delete('public/images/user/'.$old_image);
-            }
-            $image_name = time().'.'.$request->image->getClientOriginalExtension();
-            $path= $request->file('image')->storeAs('public/images/user/', $image_name);
-            $update->image = $image_name;
+            if ($request->hasFile('image')) {
 
-        }   
+                if(file_exists(public_path('/images/user/'.$update->image))){
+                    File::delete('/images/user/'.$update->image);
+                }
+                
+                $image_name = time().'.'.$request->image->getClientOriginalExtension();
+                $path= $request->file('image')->move(public_path('/images/user'), $image_name);
+                $update->image = $image_name;
+
+            }   
+
+        }
+
         $update->name = $request['name'];
 
         $update->save();             

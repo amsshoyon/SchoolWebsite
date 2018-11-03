@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 use App\Event;
 class EventController extends Controller
 {
@@ -33,15 +34,9 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         $events = new Event;
-        $this->validate($request, [
-            'title'=>'required',
-            'description'=>'required',
-            'month'=>'required',
-            'date'=>'required'
-        ]);
         $events->title = $request["title"];
         $events->description = $request["description"];
         $events->month = $request["month"];
@@ -69,8 +64,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $events = Event::find($id);
-        return view('Dashboard.editEvent', compact('events'));
+        $event = Event::find($id);
+        $events = Event::all();
+        return view('Dashboard.event', compact('events', 'event'));
     }
 
     /**
@@ -80,20 +76,14 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'=>'required',
-            'description'=>'required',
-            'month'=>'required',
-            'date'=>'required'
-        ]);
-        $events = Event::find($id);
-        $events->title = $request["title"];
-        $events->description = $request["description"];
-        $events->month = $request["month"];
-        $events->date = $request["date"];
-        $events->save();
+        $update = Event::find($id);
+        $update->title = $request["title"];
+        $update->description = $request["description"];
+        $update->month = $request["month"];
+        $update->date = $request["date"];
+        $update->save();
         return redirect('/Dashboard/event')->with('success', 'Updated Successfully');
     }
 
@@ -105,8 +95,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        $events = Event::find($id);
-        $events->delete();
+        $delete = Event::find($id);
+        $delete->delete();
         return back()->with('success', 'Deleted Successfully');
     }
 }

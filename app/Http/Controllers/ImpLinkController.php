@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ImportantLink;
-class ImportantLinkController extends Controller
+use App\Http\Requests\LinkRequest;
+use App\Link;
+
+class ImpLinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,8 @@ class ImportantLinkController extends Controller
      */
     public function index()
     {
-        $importantlinks = ImportantLink::all();
-        return view('Dashboard.importantlink', compact('importantlinks'));
+        $ImpLinks = Link::get()->where('type','2');   //1 => e-link, 2 =>imp link , 3 => social
+        return view('Dashboard.ImpLink', compact('ImpLinks'));
     }
 
     /**
@@ -33,16 +35,13 @@ class ImportantLinkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LinkRequest $request)
     {
-        $importantlinks = new ImportantLink;
-        $this->validate($request, [
-            'title'=>'required',
-            'link'=>'required'
-        ]);
-        $importantlinks->title = $request["title"];
-        $importantlinks->link = $request["link"];
-        $importantlinks->save();
+        $store = new Link;
+        $store->title = $request["title"];
+        $store->link = $request["link"];
+        $store->type = $request["type"];
+        $store->save();
         return back()->with('success', 'Added Successfully');
     }
 
@@ -65,8 +64,9 @@ class ImportantLinkController extends Controller
      */
     public function edit($id)
     {
-        $importantlinks = ImportantLink::find($id);
-        return view('Dashboard.editImportantLink', compact('importantlinks'));
+        $ImpLink = Link::find($id);
+        $ImpLinks = Link::get()->where('type','2');
+        return view('Dashboard.ImpLink', compact('ImpLinks','ImpLink'));
     }
 
     /**
@@ -76,17 +76,13 @@ class ImportantLinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LinkRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'=>'required',
-            'link'=>'required'
-        ]);
-        $importantlinks = ImportantLink::find($id);
-        $importantlinks->title = $request["title"];
-        $importantlinks->link = $request["link"];
-        $importantlinks->save();
-        return redirect('/Dashboard/importantlink')->with('success', 'Updated Successfully');
+        $update = Link::find($id);
+        $update->title = $request["title"];
+        $update->link = $request["link"];
+        $update->save();
+        return back()->with('success', 'Updated Successfully');
     }
 
     /**
@@ -97,8 +93,8 @@ class ImportantLinkController extends Controller
      */
     public function destroy($id)
     {
-        $importantlinks = ImportantLink::find($id);
-        $importantlinks->delete();
+        $delete = Link::find($id);
+        $delete->delete();
         return back()->with('success', 'Deleted Successfully');
     }
 }

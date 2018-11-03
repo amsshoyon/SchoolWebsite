@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SocialLink;
-class SocialLinkController extends Controller
+use App\Http\Requests\LinkRequest;
+use App\Link;
+
+class E_LinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,8 @@ class SocialLinkController extends Controller
      */
     public function index()
     {
-        $socialLinks = SocialLink::all();
-        return view('Dashboard.socialLink', compact('socialLinks'));
+        $E_Infos = Link::get()->where('type','1');   //1 => e-link, 2 =>imp link , 3 => social
+        return view('Dashboard.einfo', compact('E_Infos'));
     }
 
     /**
@@ -33,9 +35,14 @@ class SocialLinkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LinkRequest $request)
     {
-        //
+        $store = new Link;
+        $store->title = $request["title"];
+        $store->link = $request["link"];
+        $store->type = $request["type"];
+        $store->save();
+        return back()->with('success', 'Added Successfully');
     }
 
     /**
@@ -57,8 +64,9 @@ class SocialLinkController extends Controller
      */
     public function edit($id)
     {
-        $socialLinks = SocialLink::find($id);
-        return view('Dashboard.editSocialLink', compact('socialLinks'));
+        $E_Info = Link::find($id);
+        $E_Infos = Link::get()->where('type','1');
+        return view('Dashboard.einfo', compact('E_Info','E_Infos'));
     }
 
     /**
@@ -68,17 +76,13 @@ class SocialLinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LinkRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'=>'required',
-            'link'=>'required'
-        ]);
-        $socialLinks = SocialLink::find($id);
-        $socialLinks->title = $request["title"];
-        $socialLinks->link = $request["link"];
-        $socialLinks->save();
-        return redirect('/Dashboard/sociallink')->with('success', 'Updated Successfully');
+        $update = Link::find($id);
+        $update->title = $request["title"];
+        $update->link = $request["link"];
+        $update->save();
+        return redirect('/Dashboard/einfo')->with('success', 'Updated Successfully');
     }
 
     /**
@@ -89,8 +93,8 @@ class SocialLinkController extends Controller
      */
     public function destroy($id)
     {
-        $socialLinks = SocialLink::find($id);
-        $socialLinks->delete();
+        $delete = Link::find($id);
+        $delete->delete();
         return back()->with('success', 'Deleted Successfully');
     }
 }
