@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Slider;
@@ -10,32 +10,36 @@ use App\About;
 use App\Event;
 use App\Message;
 use App\Achievement;
-use App\EInfo;
 use App\Member;
 use App\MemberType;
-use App\ImportantLink;
+use App\Link;
+use App\Website;
 
 class PageController extends Controller
 {
     public function index()
     {
+        $Website = Website::get()->first();
+        $socials = Link::get()->where('type','3');
+        $ImpLinks = Link::get()->where('type','1');
+        $E_infos = Link::get()->where('type','2');
         $Sliders = Slider::get();
         $About = About::find('1');
-        $Notices = Notice::all();
-        $Messages = Message::all();
-        $Events = Event::all();
-        $Achievements = Achievement::all();
-        $ImportantLinks = ImportantLink::all();
-        $EInfos = EInfo::all();
+        $Notices = Notice::orderBy('created_at', 'desc')->limit('5')->get();
+        $Messages = Message::orderBy('created_at', 'desc')->get();
+        $Events = Event::orderBy('created_at', 'desc')->limit('3')->get();
+        $Achievements = Achievement::orderBy('created_at', 'desc')->limit('2')->get();
         return view('Page.index')->with(compact(
+            'Website',
+            'socials',
+            'ImpLinks',
+            'E_infos',
         	'Sliders',
+        	'About',
         	'Notices',
         	'Messages',
         	'Events',
-        	'Achievements',
-        	'ImportantLinks',
-        	'EInfos',
-            'About'
+        	'Achievements'
         ));  
     }
 

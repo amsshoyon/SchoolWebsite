@@ -56,9 +56,9 @@ new WOW().init();
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
 
-    if (scroll >= 120) {
+    if (scroll >= 130) {
         $(".top_nav").addClass("navbar-fixed-top");
-    }if (scroll < 120) {
+    }if (scroll < 130) {
         $(".top_nav").removeClass("navbar-fixed-top");
     }
 }); 

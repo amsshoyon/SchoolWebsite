@@ -106,13 +106,13 @@ Route::resource('/Dashboard/einfo', 'E_LinkController');
 Route::resource('/Dashboard/importantlink', 'ImpLinkController');
 
 // Social Media Link
-//Route::resource('/Dashboard/sociallink', 'SocialLinkController');
+Route::resource('/Dashboard/Social', 'SocialController');
 
 // Message
 Route::resource('/Dashboard/message', 'MessageController');
 
 // Message
-// Route::resource('/Dashboard/website', 'WebsiteController');
+Route::resource('/Dashboard/website', 'WebsiteController');
 
 // Message
 Route::resource('/Dashboard/event', 'EventController');

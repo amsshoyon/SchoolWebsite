@@ -1,19 +1,21 @@
 @extends('Page.layout.page')
 
 @section('page_content')
-
-	@include('Page.inc.slider')
 	
-	{{-- @include('Page.inc.about') --}}
+	@include('Page.inc.slider')
+	@include('Page.inc.marquee')
+	@include('Page.inc.about')
 	@include('Page.inc.messages')
 	<div class="clearfix"></div>
-	<div class="container-fluid seperator events_acvmnt" style="background-image: url(images/header.jpg);">
-		<div class="container">
-			<div class="col-md-6">
-				@include('Page.inc.achievement')
-			</div>
-			<div class="col-md-6">
-				@include('Page.inc.events')
+	<div class="seperator" style="background-image: url(/images/header_1.jpg);">
+		<div  class=" events_acvmnt" style="background-color: rgba(0,0,0,.6);">
+			<div class="container">
+				<div class="col-md-6">
+					@include('Page.inc.achievement')
+				</div>
+				<div class="col-md-6">
+					@include('Page.inc.events')
+				</div>
 			</div>
 		</div>
 	</div>

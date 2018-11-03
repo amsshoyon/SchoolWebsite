@@ -27,6 +27,14 @@ p{
     text-align: justify;
     text-justify: inter-word;
 }
+
+.form-group input{
+  border:0;
+}
+
+.form-group textarea{
+  border:0;
+}
 .padding{
   padding-top: 40px;
   padding-bottom: 40px;
@@ -44,11 +52,10 @@ p{
 }
 
 .seperator {
-  color:#fff;
-  background-color:rgba(0,0,0, .5);
   background-attachment: fixed;
-  background-repeat: repeat;
-  background-size:100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .colorgraph {

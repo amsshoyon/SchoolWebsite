@@ -2,7 +2,7 @@
 
 @section('dashboard')
 
- @include('Dashboard.Inc.website')
+@include('Dashboard.inc.social')
 
 
 @endsection

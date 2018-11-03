@@ -1,6 +1,6 @@
 
-<div class="container messages">
-	<div class="row padding">
+<div class="">
+	<div class="container messages padding">
 
 		@foreach($Messages as $Message)
 
@@ -10,7 +10,11 @@
 			<div class="col-md-6" >
 				<div class="col-md-12 message_head">
 					<div class="" style="display: inline-block;">
+						@if(isset($Message->image))
 						<img src="/images/message/{{$Message->image}}" class="img-responsive img-rounded">
+						@else
+						<img src="/images/profile.jpg" class="img-responsive img-rounded">
+						@endif
 					</div>
 					<div class="title" style="display: inline-block;">
 						<h3><b><span>Message From:</span> {{$Message->designation}}</b></h3>

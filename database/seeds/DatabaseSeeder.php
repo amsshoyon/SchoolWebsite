@@ -22,6 +22,16 @@ class DatabaseSeeder extends Seeder
 			'updated_at' => new DateTime()
 		]);
 
+		$website = DB::table('websites')->insert([
+			'name'   => 'School Name',                 //default username
+			'email'      => 'school@domain.com', 
+			'phone'  => '+880-1722-000000',
+			'address'  => 'School Address',
+			'map'  => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14618.001943658155!2d90.35632067321413!3d23.658021084138017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7aac0bdc26c9a261!2z4Kau4Ka_4Kao4KeN4Kao4KakIOCmquCnjeCmsuCmvuCmnOCmvg!5e0!3m2!1sen!2sbd!4v1541142276986',
+			'created_at' => new DateTime(),
+			'updated_at' => new DateTime()
+		]);
+
 		$about = DB::table('abouts')->insert([
 			[
 				'type'   => 'About',          
@@ -109,6 +119,37 @@ class DatabaseSeeder extends Seeder
 
 			[
 				'type'   => 'Staff',  
+				'created_at' => new DateTime(),
+				'updated_at' => new DateTime()
+			
+			],
+
+		]);
+
+		$type = DB::table('links')->insert([
+
+			[
+				'title'   => 'Facebook',  
+				'link'   => 'http://facebook.com/amsshoyon',  
+				'type'   => '3',  
+				'created_at' => new DateTime(),
+				'updated_at' => new DateTime()
+			
+			],
+
+			[
+				'title'   => 'Instagram',  
+				'link'   => 'http://facebook.com/amsshoyon',  
+				'type'   => '3',  
+				'created_at' => new DateTime(),
+				'updated_at' => new DateTime()
+			
+			],
+
+			[
+				'title'   => 'Google+',  
+				'link'   => 'http://facebook.com/amsshoyon',  
+				'type'   => '3',  
 				'created_at' => new DateTime(),
 				'updated_at' => new DateTime()
 			

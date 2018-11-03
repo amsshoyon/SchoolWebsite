@@ -5,9 +5,17 @@
             	<div class="footer_dv">
                 	<h4>Important Links</h4> 
                 	<ul>
-                        @foreach($ImportantLinks as $ImportantLink)
-                    	<li class="line_rv"><a href="{{$ImportantLink->link}}">{{$ImportantLink->title}}</a></li>
+                        @if(count($ImpLinks) > 0)
+                        @foreach($ImpLinks as $ImpLink)
+                    	<li class="line_rv"><a href="{{$ImpLink->link}}">{{$ImpLink->title}}</a></li>
                         @endforeach
+                        @else
+                        <li class="line_rv"><a href="">Education Board</a></li>
+                        <li class="line_rv"><a href="">S.S.C. Result</a></li>
+                        <li class="line_rv"><a href="">Bd Books</a></li>
+                        <li class="line_rv"><a href="">Teachers Association</a></li>
+                        <li class="line_rv"><a href="">Govt. Organization</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -21,18 +29,27 @@
                         <li><a href="">History</a></li>
                         <li><a href="">Our Members</a></li>
                         <li><a href="">Mission</a></li>
-                       
-                        
+                    
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4  col-md-4 col-sm-4">
             	<div class="footer_dv">
-                	<h4>Contact us</h4>
-                	<p>মিন্নত প্লাজা (৩য় তলা), কলাকান্দি, আব্দুল্লাহপুর, দক্ষিণ কেরানীগঞ্জ, ঢাকা-১৩১১ </p>
-      			<p>+880-10000-******<br>
-
-				
+                    <h4>Contact Us</h4>
+                    <ul>
+                        @if(count($socials) > 0)
+                        @foreach($socials as $social)
+                        <li><a href="{{$social->link}}">{{$social->title}}</a></li>
+                        @endforeach
+                        @else
+                        <li><a href="">Email Address</a></li>
+                        <li><a href="">Contact to Office</a></li>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Whatsapp</a></li>
+                        <li><a href="">Whatsapp</a></li>
+                        @endif
+                    </ul>
                 </p></div>
             </div>
         </div>

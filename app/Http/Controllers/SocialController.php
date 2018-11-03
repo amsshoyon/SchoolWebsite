@@ -3,27 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use File;
-use App\Website;
-use App\Http\Requests\WebsiteRequest;
+use App\Http\Requests\LinkRequest;
+use App\Link;
 
-class WebsiteController extends Controller
+class SocialController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $website = Website::get()->first();
-        return view('Dashboard.website')->with(compact('website'));
+        $socials = Link::get()->where('type','3');   //1 => e-link, 2 =>imp link , 3 => social
+        return view('Dashboard.social', compact('socials'));
     }
 
     /**
@@ -42,11 +35,10 @@ class WebsiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SliderRequest $request){
+    public function store(Request $request)
+    {
         //
     }
-
-
 
     /**
      * Display the specified resource.
@@ -56,7 +48,7 @@ class WebsiteController extends Controller
      */
     public function show($id)
     {
-       //
+        //
     }
 
     /**
@@ -79,27 +71,10 @@ class WebsiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update=Website::findOrFail($id);
-
-        if ($request->hasFile('image')) {
-
-            if(file_exists(public_path('/images/website/'.$update->image))){
-                File::delete('/images/website/'.$update->image);
-            }
-            $image_name = time().'.'.$request->image->getClientOriginalExtension();
-            $path= $request->file('image')->move(public_path('/images/website'), $image_name);
-            $update->logo = $image_name;
-
-        }
-        $update->name = $request['name'];
-        $update->email = $request['email'];
-        $update->phone = $request['phone'];
-        $update->address = $request['address'];
-        $update->map = $request['map'];
-
+        $update = Link::find($id);
+        $update->link = $request["link"];
         $update->save();
-        return redirect('/Dashboard/website/')->with('success', 'Image Updated');
-
+        return redirect('Dashboard/Social')->with('success', 'Updated Successfully');
     }
 
     /**
@@ -108,8 +83,8 @@ class WebsiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy($id)
+    {
         //
     }
-
 }

@@ -84,9 +84,9 @@
                                     <li><a href="/Dashboard/academic">Academic</a></li>
                                     <li><a href="/Dashboard/einfo">E-Info</a></li>
                                     <li><a href="/Dashboard/importantlink">Important Link</a></li>
-                                    {{-- <li><a href="/Dashboard/sociallink">Social Link</a></li> --}}
+                                    <li><a href="/Dashboard/Social">Social Link</a></li>
                                     <li><a href="/Dashboard/Achivement">Achivement</a></li>
-                                    {{-- <li><a href="/Dashboard/website">Website logo</a></li> --}}
+                                    <li><a href="/Dashboard/website">Website logo</a></li>
                                     <li><a href="/Dashboard/event">Event</a></li>
                                 </ul>
                             </div>

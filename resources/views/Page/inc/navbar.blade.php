@@ -6,15 +6,17 @@
             <img src="images/logo.jpg" alt="" width="120px;">
         </div>
         <div class="col-md-6 col-centered text-center">
-            <h2 class="scl_name">ইকরা আইডিয়াল স্কুল</h2>
-            <p class="scl_location text-center">মিন্নত প্লাজা (৩য় তলা), কলাকান্দি, আব্দুল্লাহপুর, দক্ষিণ কেরানীগঞ্জ, ঢাকা-১৩১১ </p>
+            <h2 class="scl_name">{{$Website->name}}</h2>
+            <p class="scl_location text-center">{{$Website->address}}</p>
         </div>
         <div class="col-md-3 pull-right" style="padding-top: 25px;">
             <div class="nav_contact">
-                <i class="fa fa-envelope"></i> amsshoyon@gmail.com 
+                <i class="fa fa-envelope"></i>
+                {{$Website->email}} 
             </div>
             <div class="nav_contact">
-                <i class="fa fa-phone"></i> +880-1722-937278
+                <i class="fa fa-phone"></i>
+                {{$Website->phone}}
             </div>
         </div>
       </div>
