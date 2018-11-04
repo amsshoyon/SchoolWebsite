@@ -48,36 +48,73 @@ class PageController extends Controller
         $About = About::find('1');
         $History = About::find('2');
         $Mission = About::find('3');
-        $Notices = Notice::all();
-        $ImportantLinks = ImportantLink::all();
-        return view('Page.about')->with(compact('About','History', 'Mission', 'ImportantLinks','Notices'));  
+        $Notices = Notice::orderBy('created_at', 'desc')->limit('5')->get();
+        $Website = Website::get()->first();
+        $socials = Link::get()->where('type','3');
+        $ImpLinks = Link::get()->where('type','1');
+        return view('Page.about')->with(compact(
+            'About',
+            'History', 
+            'Mission', 
+            'Notices',
+            'Website',
+            'socials',
+            'ImpLinks'
+        ));  
     }
 
     public function GovtBody()
     {
         $Members = Member::get()->where('type','1');
         $Type = MemberType::find('1');
-        $ImportantLinks = ImportantLink::all();
-        $Notices = Notice::all();
-        return view('Page.members')->with(compact('Members','Type', 'ImportantLinks','Notices'));  
+        $Notices = Notice::orderBy('created_at', 'desc')->limit('5')->get();
+        $Website = Website::get()->first();
+        $socials = Link::get()->where('type','3');
+        $ImpLinks = Link::get()->where('type','1');
+        return view('Page.members')->with(compact(
+            'Members',
+            'Type', 
+            'Notices',
+            'Website',
+            'socials',
+            'ImpLinks'
+        ));  
     }
 
     public function teachers()
     {
         $Members = Member::get()->where('type','2');
         $Type = MemberType::find('2');
-        $ImportantLinks = ImportantLink::all();
-        $Notices = Notice::all();
-        return view('Page.members')->with(compact('Members','Type', 'ImportantLinks','Notices'));  
+        $Notices = Notice::orderBy('created_at', 'desc')->limit('5')->get();
+        $Website = Website::get()->first();
+        $socials = Link::get()->where('type','3');
+        $ImpLinks = Link::get()->where('type','1');
+        return view('Page.members')->with(compact(
+            'Members',
+            'Type', 
+            'Notices',
+            'Website',
+            'socials',
+            'ImpLinks'
+        ));  
     }
 
     public function staffs()
     {
         $Members = Member::get()->where('type','3');
         $Type = MemberType::find('3');
-        $ImportantLinks = ImportantLink::all();
-        $Notices = Notice::all();
-        return view('Page.members')->with(compact('Members','Type', 'ImportantLinks','Notices'));  
+        $Notices = Notice::orderBy('created_at', 'desc')->limit('5')->get();
+        $Website = Website::get()->first();
+        $socials = Link::get()->where('type','3');
+        $ImpLinks = Link::get()->where('type','1');
+        return view('Page.members')->with(compact(
+            'Members',
+            'Type', 
+            'Notices',
+            'Website',
+            'socials',
+            'ImpLinks'
+        ));   
     }
  
 }
