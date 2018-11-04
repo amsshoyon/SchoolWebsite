@@ -1,5 +1,5 @@
-@if(count($Sliders) > 0)
-  {{-- Dynamic Slider --}}
+{{-- @if(count($Sliders) > 0)
+
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: -20px;">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -23,7 +23,7 @@
         @endforeach
     </ol>
 
-    <!-- Wrapper for slides -->
+
     <div class="carousel-inner">
         @php
             $i = 0;
@@ -49,7 +49,7 @@
         @endforeach
     </div>
 
-    <!-- Left and right controls -->
+
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
       <span class="sr-only">Previous</span>
@@ -63,9 +63,9 @@
 
 
 @else
-  {{-- Default Slider --}}
+
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: -20px;">
-    <!-- Indicators -->
+
     <ol class="carousel-indicators">
        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
@@ -73,7 +73,7 @@
        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
     </ol>
 
-    <!-- Wrapper for slides -->
+
     <div class="carousel-inner">
 
         <div class="item active">
@@ -110,7 +110,7 @@
 
     </div>
 
-    <!-- Left and right controls -->
+
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
       <span class="sr-only">Previous</span>
@@ -121,3 +121,22 @@
     </a>
   </div>
   @endif
+
+
+<br>
+<br>
+<br>
+ --}}
+
+<div class="responsive">
+  <div>
+    <img src="/images/slider_1.jpg" alt="Los Angeles" style="width:100%; height:500px; ">
+    <div>
+      <h3>Title</h3>
+    </div>
+  </div>
+  <div><img src="/images/slider_2.jpg" alt="Los Angeles" style="width:100%; height:500px;"></div>
+  <div><img src="/images/slider_3.jpg" alt="Los Angeles" style="width:100%; height:500px;"></div>
+  <div><img src="/images/slider_4.jpg" alt="Los Angeles" style="width:100%; height:500px;"></div>
+</div>
+  

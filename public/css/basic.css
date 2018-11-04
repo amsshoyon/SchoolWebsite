@@ -90,3 +90,19 @@ p{
   display: none;
 }
 
+.shadow {
+  display: inline-block;
+  position: relative;
+  -moz-box-shadow: rgba(0, 0, 0, 0.8) 0 0 5px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0 0 5px inset;
+  box-shadow: rgba(0, 0, 0, 0.8) 0 0 5px inset;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+/*.shadow:hover {
+  -moz-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+  box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+}
+*/

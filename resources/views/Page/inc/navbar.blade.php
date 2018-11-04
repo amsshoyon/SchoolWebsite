@@ -24,7 +24,7 @@
    <!-- header section end-->
 
 <div class="nav_menu navbar  top_nav">
-    <nav class="container">
+    <nav style="margin-left: 10px; margin-right: 10px;">
        <!-- Menu Toggle btn-->
        <div class="menu-toggle">
            <h3>Menu</h3>

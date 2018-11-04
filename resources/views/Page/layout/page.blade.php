@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ইকরা আইডিয়াল স্কুল</title>
+        <title>{{$Website->name}}</title>
 
         {{-- Custom Styles --}}
         <link rel="stylesheet" type="text/css" href="/css/page.css">
@@ -22,10 +22,32 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.css"/>
 
-  
+        <!-- Add the slick-theme.css if you want default styling -->
+        <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
 
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="slick/slick.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.responsive').slick({
+                    dots: true,
+                    arrows: true,
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000
+                    
+                });
+            });
+        </script>
+
 
     </head>
 
@@ -33,34 +55,31 @@
 
         @include('Page.inc.pageloader')
 
-        <div  style="display:none;" id="PageToDisplay" class="animate-bottom">
+        <div style="display:none;" id="PageToDisplay" class="animate-bottom">
          
             @include('Page.inc.navbar')
 
-            <aside id="page-content" class="page-content">
+            <aside id="page-content" class="page-content" style="padding-left: 20px;padding-right: 20px;">
 
                     <div>@yield('page_content')</div>
 
             </aside>
 
-            @include('Page.inc.notice')
+            {{-- @include('Page.inc.notice') --}}
             @include('Page.inc.BackToTop')
             @include('Page.inc.footer')
 
         </div>
         
-        
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         
-        <script src="/js/jquery.min.js"></script>
         <script src="/js/wow.min.js"></script>
         <script src="/js/responsive-menu.js"></script>
         <script src="/js/custom.js"></script>
         
-        
+
+
+
 
     </body>
 </html>

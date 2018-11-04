@@ -2,7 +2,7 @@
 
 @section('page_content')
 	
-	@include('Page.inc.slider')
+{{-- 	@include('Page.inc.slider')
 	@include('Page.inc.marquee')
 	@include('Page.inc.about')
 	@include('Page.inc.messages')
@@ -19,6 +19,18 @@
 			</div>
 		</div>
 	</div>
-	@include('Page.inc.contact')
+	@include('Page.inc.contact') --}}
+
+	<div class="col-md-2" style="padding: 10px;">
+		@include('Page.inc.notice')
+	</div>
+	<div class="col-md-8" style="padding: 10px;">
+		@include('Page.inc.slider')
+	</div>
+	<div class="col-md-2" style="padding: 10px;">
+		@include('Page.inc.implinks')
+	</div>
+
+	<div class="clearfix"></div>
 
 @endsection 
